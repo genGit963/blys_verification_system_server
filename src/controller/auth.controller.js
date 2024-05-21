@@ -6,7 +6,7 @@ import sendEmail from "../utils/sendEmail.js";
 
 export const registerAndSendCode = (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     // creating user
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync("123456", salt);
@@ -41,34 +41,10 @@ export const registerAndSendCode = (req, res, next) => {
   }
 };
 
-// export const verifyCode = async (req, res, next) => {
-//   try {
-//     console.log(req.body);
-//     const SQL = "SELECT email, code FROM blys WHERE code=?";
-//     connection.query(SQL, [req.body.code], (err, data) => {
-//       if (req.body.code === data[0].code) {
-//         res.status(200).json({
-//           message: data,
-//           status: "success",
-//         });
-//       } else {
-//         res.status(401).json({
-//           message: "Verification Failed !",
-//           status: "fail",
-//         });
-//       }
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       message: "verification failed !",
-//       status: "fail",
-//     });
-//   }
-// };
 
 export const verifyCode = async (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const SQL = "SELECT email, code FROM blys WHERE code=?";
     connection.query(SQL, [req.body.code], (err, data) => {
       if (err) {

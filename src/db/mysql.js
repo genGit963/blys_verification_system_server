@@ -1,21 +1,38 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import mysql from "mysql";
 import app from "../app.js";
 
-const connection = mysql.createConnection({
-  host: "sql12.freesqldatabase.com",
-  user: "sql12707990",
-  password: "rmMQV7GujJ",
-  database: "sql12707990",
-  port: "3306",
-});
+// const host = process.env.DB_HOST;
+// const user = process.env.DB_USER;
+// const password = process.env.DB_PSWD;
+// const database = process.env.DB_DB;
+// const port = process.env.DB_PORT;
 
 // const connection = mysql.createConnection({
-//   host: process.env.DB_HOST,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PSWD,
-//   database: process.env.DB_DB,
-//   port: process.env.DB_PORT,
+//   host: host,
+//   user: user,
+//   password: password,
+//   database: database,
+//   port: port,
 // });
+
+// console.log({
+//   host: host,
+//   user: user,
+//   password: password,
+//   database: database,
+//   port: port,
+// });
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PSWD,
+  database: process.env.DB_DB,
+  port: process.env.DB_PORT,
+});
 
 function connectionDB() {
   connection.connect((err) => {

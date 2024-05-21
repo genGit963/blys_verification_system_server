@@ -12,5 +12,6 @@ import authRouter from "./router/auth.route.js";
 
 app.use("/api", authRouter);
 
+// console.log(process.env)
 
 export default app;
