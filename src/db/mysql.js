@@ -8,7 +8,6 @@ const connection = mysql.createConnection({
   database: "sql12707990",
   port: "3306",
 });
-
 // const connection = mysql.createConnection({
 //   host: process.env.DB_HOST,
 //   user: process.env.DB_USER,
@@ -16,7 +15,6 @@ const connection = mysql.createConnection({
 //   database: process.env.DB_DB,
 //   port: process.env.DB_PORT,
 // });
-
 function connectionDB() {
   connection.connect((err) => {
     try {
