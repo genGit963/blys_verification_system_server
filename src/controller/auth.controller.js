@@ -13,8 +13,10 @@ export const registerAndSendCode = (req, res, next) => {
 
     // code
     const generateCode = Math.floor(Math.random() * 1000000);
-    const code = generateCode.toString().padStart(6, '0');
-    const message = `Your verification code is ${Number(code)}. Please don't share anybody.`;
+    const code = generateCode.toString().padStart(6, "0");
+    const message = `Your verification code is ${Number(
+      code
+    )}. Please don't share anybody.`;
 
     sendEmail({
       email: String(req.body.email),
@@ -40,7 +42,6 @@ export const registerAndSendCode = (req, res, next) => {
     });
   }
 };
-
 
 export const verifyCode = async (req, res, next) => {
   try {
@@ -69,7 +70,7 @@ export const verifyCode = async (req, res, next) => {
         });
       } else {
         res.status(401).json({
-          message: "Verification Failed !",
+          message: "code mismatched !",
           status: "fail",
         });
       }
