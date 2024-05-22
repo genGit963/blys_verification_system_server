@@ -12,8 +12,9 @@ export const registerAndSendCode = (req, res, next) => {
     const hash = bcrypt.hashSync("123456", salt);
 
     // code
-    const verifyCode = Math.floor(Math.random() * 1000000 + 1);
-    const message = `Your verification code is ${verifyCode}. Please don't share anybody.`;
+    const generateCode = Math.floor(Math.random() * 1000000);
+    const code = generateCode.toString().padStart(6, '0');
+    const message = `Your verification code is ${Number(code)}. Please don't share anybody.`;
 
     sendEmail({
       email: String(req.body.email),
@@ -23,10 +24,9 @@ export const registerAndSendCode = (req, res, next) => {
 
     connection.query(
       `INSERT INTO blys (email, password, code) VALUES (?,?,?)`,
-      [String(req.body.email), hash, verifyCode],
+      [String(req.body.email), hash, Number(code)],
       async (err, data) => {
         if (err) throw err;
-
         res.status(200).json({
           message: "Verification Code is sent to your email.",
           status: "success",
